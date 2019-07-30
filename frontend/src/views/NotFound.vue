@@ -18,7 +18,7 @@ import SvgImage from '@/components/Atoms/SvgImage.vue'; // @ is an alias to /src
 
 @Component({
   components: {
-    SvgImage
+    SvgImage,
   },
 })
 export default class NotFound extends Vue {}

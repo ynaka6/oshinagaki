@@ -12,12 +12,14 @@
             class="mt-10"
             autofocus
             autocapitalize="off"
+            :errors="emailErrors"
           />
           <text-input
             type="password"
             v-model="password"
             class="mt-6"
             label="Password"
+            :errors="passwordErrors"
           />
         </div>
         <div class="px-10 py-4 bg-grey-lightest border-t border-grey-lighter flex justify-between items-center">
@@ -35,19 +37,43 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import TextInput from '@/components/Molecules/TextInput.vue'; // @ is an alias to /src
+import { namespace } from 'vuex-class';
+import { LoginState } from '@/store/types';
+import TextInput from '@/components/Molecules/TextInput.vue';
+
+const AuthModule = namespace('auth');
 
 @Component({
   components: {
-    TextInput
+    TextInput,
   },
 })
 export default class Login extends Vue {
-  private email: string | null = null
-  private password: string | null = null
-  
-  onSubmit({ target }: {target: HTMLButtonElement }) {
-    console.log(target.getBoundingClientRect())
+  private email: string = '';
+  private password: string = '';
+
+  private emailErrors: Array<any> = [];
+  private passwordErrors: Array<any> = [];
+
+  @AuthModule.Action('login')
+  private login!: (loginState: LoginState) => Promise<any>;
+
+
+  private async onSubmit() {
+    const loginState: LoginState = {email: this.email, password: this.password};
+    this.login(loginState)
+      .then(e => {
+        this.$router.push('/');
+      })
+      .catch(err => {
+        const response = err.response;
+        const errors = response.data.errors;
+        if (errors) {
+          this.emailErrors = errors['email'];
+          this.passwordErrors = errors['password'];
+        }
+      })
+    ;
   }
 }
 </script>

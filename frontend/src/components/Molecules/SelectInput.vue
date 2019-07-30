@@ -1,10 +1,17 @@
 <template>
   <div>
     <label v-if="label" class="form-label" :for="id">{{ label }}:</label>
-    <select :id="id" ref="input" v-model="selected" v-bind="$attrs" class="form-select" :class="{ error: errors.length }">
+    <select
+      :id="id"
+      ref="input"
+      v-model="selected"
+      v-bind="$attrs"
+      class="form-select"
+      :class="{ 'border-red-500': errors.length }"
+    >
       <slot />
     </select>
-    <div v-if="errors.length" class="form-error">{{ errors[0] }}</div>
+    <div v-if="errors.length" class="text-red-500 text-xs italic mt-1">{{ errors[0] }}</div>
   </div>
 </template>
 
@@ -15,7 +22,7 @@ export default {
     id: {
       type: String,
       default() {
-        return `select-input-${this._uid}`
+        return `select-input-${this._uid}`;
       },
     },
     value: [String, Number, Boolean],
@@ -43,5 +50,5 @@ export default {
       this.$refs.input.select()
     },
   },
-}
+};
 </script>

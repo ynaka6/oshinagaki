@@ -2,7 +2,7 @@
   <div>
     <label v-if="label" class="form-label" :for="id">{{ label }}:</label>
     <textarea :id="id" ref="input" v-bind="$attrs" class="form-textarea" :class="{ error: errors.length }" :value="value" @input="$emit('input', $event.target.value)" />
-    <div v-if="errors.length" class="form-error">{{ errors[0] }}</div>
+    <div v-if="errors.length" class="text-red-500 text-xs italic mt-1">{{ errors[0] }}</div>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     id: {
       type: String,
       default() {
-        return `textarea-input-${this._uid}`
+        return `textarea-input-${this._uid}`;
       },
     },
     value: String,
@@ -42,5 +42,5 @@ export default {
       this.$refs.input.select()
     },
   },
-}
+};
 </script>

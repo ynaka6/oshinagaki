@@ -1,7 +1,16 @@
 <template>
   <div>
     <label v-if="label" class="form-label" :for="id">{{ label }}:</label>
-    <input :id="id" ref="input" v-bind="$attrs" class="form-input" :class="{ error: errors.length }" :type="type" :value="value" @input="$emit('input', $event.target.value)">
+    <input
+      :id="id"
+        ref="input"
+      v-bind="$attrs"
+      class="form-input"
+      :class="{ 'border-red-500': errors.length }"
+      :type="type"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+    >
     <div v-if="errors.length" class="form-error">{{ errors[0] }}</div>
   </div>
 </template>
@@ -13,7 +22,7 @@ export default {
     id: {
       type: String,
       default() {
-        return `number-input-${this._uid}`
+        return `number-input-${this._uid}`;
       },
     },
     type: {
@@ -38,5 +47,5 @@ export default {
       this.$refs.input.setSelectionRange(start, end)
     },
   },
-}
+};
 </script>

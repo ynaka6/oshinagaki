@@ -7,11 +7,11 @@
       ref="input"
       v-bind="$attrs"
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-600"
-      :class="{ error: errors.length }"
+      :class="{ 'border-red-500': errors.length }"
       :value="value"
       @input="$emit('input', $event.target.value)"
     >
-    <div v-if="errors.length" class="text-red-500 text-xs italic">{{ errors[0] }}</div>
+    <div v-if="errors.length" class="text-red-500 text-xs italic mt-1">{{ errors[0] }}</div>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     id: {
       type: String,
       default() {
-        return `text-input-${this._uid}`
+        return `text-input-${this._uid}`;
       },
     },
     type: {
@@ -38,14 +38,14 @@ export default {
   },
   methods: {
     focus() {
-      this.$refs.input.focus()
+      this.$refs.input.focus();
     },
     select() {
-      this.$refs.input.select()
+      this.$refs.input.select();
     },
     setSelectionRange(start, end) {
-      this.$refs.input.setSelectionRange(start, end)
+      this.$refs.input.setSelectionRange(start, end);
     },
   },
-}
+};
 </script>

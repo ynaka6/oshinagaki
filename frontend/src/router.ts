@@ -19,7 +19,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
     },
     {
-      path: '/notfound',
+      path: '*',
       name: 'notfound',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
