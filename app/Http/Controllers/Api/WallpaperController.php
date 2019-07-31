@@ -23,22 +23,22 @@ class WallpaperController extends Controller
 
     public function index(Request $request)
     {
-        return $this->font->orderBy('id', 'desc')->get();
+        return $this->wallpaper->orderBy('id', 'desc')->get();
     }
 
-    public function uploads(Request $request): Media
+    public function upload(Request $request)
     {
-        $user = Auth::user();
-
         $file = $request->file;
         $fileInfo = explode('.', $file->getClientOriginalName());
         $filename = $file->store(Wallpaper::FILE_DIR);
         $ext = $fileInfo[count($fileInfo) - 1];
         $name = str_replace('.' . $ext, '', $file->getClientOriginalName());
-        return $user->uploadMedia([
+        $this->wallpaper->create([
+            'user_id' => Auth::user()->id,
             'name' => $name,
             'file' => basename($filename),
             'type' => $ext
         ]);
+        return $this->index($request);
     }
 }

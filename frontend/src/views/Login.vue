@@ -48,7 +48,7 @@ const AuthModule = namespace('auth');
     TextInput,
   },
 })
-export default class Login extends Vue {
+export default class LoginView extends Vue {
   private email: string = '';
   private password: string = '';
 

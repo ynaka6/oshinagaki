@@ -20,7 +20,7 @@ class FontController extends Controller
         return $this->font->count();
     }
 
-    public function index(Request $request): int
+    public function index(Request $request)
     {
         return $this->font->orderBy('id', 'desc')->get();
     }

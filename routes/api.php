@@ -28,10 +28,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('wallpapers')->uses('Api\WallpaperController@index')->name('index');
     Route::group(['prefix' => 'wallpaper', 'as' => 'wallpaper.'], function () {
         Route::get('count')->uses('Api\WallpaperController@count')->name('count');
+        Route::post('upload')->uses('Api\WallpaperController@upload')->name('upload');
     });
-    
+
     Route::get('fonts')->uses('Api\FontController@index')->name('index');
     Route::group(['prefix' => 'font', 'as' => 'font.'], function () {
         Route::get('count')->uses('Api\FontController@count')->name('count');
+    });
+    
+    Route::get('menus')->uses('Api\MenuController@index')->name('index');
+    Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+        Route::get('count')->uses('Api\MenuController@count')->name('count');
     });
 });

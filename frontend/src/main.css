@@ -6,7 +6,14 @@
   font-family: acgyosyo;
   src: url('/fonts/acgyosyo.ttf');
 }
+@font-face {
+    font-family: ackaisyo;
+    src: url('/fonts/ackaisyo.ttf');
+}
 
-.text-acgyosyo {
-  font-family: acgyosyo, 白舟行書教漢;
+.font-acgyosyo {
+  font-family: acgyosyo, 英椎行書;
+}
+.font-ackaisyo {
+  font-family: acgyosyo, 英椎楷書;
 }

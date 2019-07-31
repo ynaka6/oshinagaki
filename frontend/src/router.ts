@@ -25,12 +25,17 @@ const router =  new Router({
         },
         {
           path: 'wallpapers',
-          component: () => import(/* webpackChunkName: "home" */ './views/Wallpaper.vue'),
+          component: () => import(/* webpackChunkName: "wallpaper" */ './views/Wallpaper.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'fonts',
+          component: () => import(/* webpackChunkName: "font" */ './views/Font.vue'),
           meta: { requiresAuth: true },
         },
         {
           path: 'menus',
-          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+          component: () => import(/* webpackChunkName: "menu" */ './views/Menu/Index.vue'),
           meta: { requiresAuth: true },
         },
         {
