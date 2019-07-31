@@ -59,7 +59,7 @@ export default class Login extends Vue {
   private login!: (loginState: LoginState) => Promise<any>;
 
 
-  private async onSubmit() {
+  private onSubmit() {
     const loginState: LoginState = {email: this.email, password: this.password};
     this.login(loginState)
       .then(e => {
@@ -69,8 +69,8 @@ export default class Login extends Vue {
         const response = err.response;
         const errors = response.data.errors;
         if (errors) {
-          this.emailErrors = errors['email'];
-          this.passwordErrors = errors['password'];
+          this.emailErrors = errors.email;
+          this.passwordErrors = errors.password;
         }
       })
     ;

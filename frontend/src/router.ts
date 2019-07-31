@@ -1,30 +1,70 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import DashbordLayout from './layouts/Dashboard.vue';
+import store from './store';
 
 Vue.use(Router);
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
     {
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
     },
     {
+      path: '/',
+      component: DashbordLayout,
+      children: [
+        {
+          path: '',
+          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'wallpapers',
+          component: () => import(/* webpackChunkName: "home" */ './views/Wallpaper.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'menus',
+          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'menu/new',
+          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'menu/:id/edit',
+          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+          meta: { requiresAuth: true },
+        },
+      ],
+    },
+    {
       path: '*',
       name: 'notfound',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "notfound" */ './views/NotFound.vue'),
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters['auth/loggedIn']) {
+      next({
+        path: '/login',
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+export default router;

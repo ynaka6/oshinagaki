@@ -22,6 +22,14 @@ class Menu extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function font(): BelongsTo
+    {
+        return $this->belongsTo(Font::class);
+    }
+    public function wallpaper(): BelongsTo
+    {
+        return $this->belongsTo(Wallpaper::class);
+    }
     public function sections(): HasMany
     {
         return $this->hasMany(Section::class);

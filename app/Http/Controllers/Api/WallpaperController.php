@@ -9,11 +9,21 @@ use Auth;
 
 class WallpaperController extends Controller
 {
-    public function index(Request $request): Response
+    private $wallpaper;
+
+    public function __construct(Wallpaper $wallpaper)
     {
-        $user = Auth::user();
-        $result = $user->findMedia($request->next);
-        return $result;
+        $this->wallpaper = $wallpaper;
+    }
+
+    public function count(Request $request): int
+    {
+        return $this->wallpaper->count();
+    }
+
+    public function index(Request $request)
+    {
+        return $this->font->orderBy('id', 'desc')->get();
     }
 
     public function uploads(Request $request): Media

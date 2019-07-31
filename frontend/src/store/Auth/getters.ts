@@ -5,8 +5,8 @@ const getters: GetterTree<UserState, RootState> = {
   user: (state: UserState) => {
     return state.user;
   },
-  isLogin: (state: UserState): boolean => {
-    return null === state.user;
+  loggedIn: (state: UserState): boolean => {
+    return null !== state.user;
   },
 };
 

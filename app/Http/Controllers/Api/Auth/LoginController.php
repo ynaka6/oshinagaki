@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function __construct()
     {
@@ -21,5 +21,11 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user): User
     {
         return $user;
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        $request->session()->regenerate();
+        return response()->json();
     }
 }

@@ -22,7 +22,7 @@
             src: url('/fonts/ackaisyo.ttf');
         }
         body {
-            font-family: acgyosyo, 白舟行書教漢;
+            font-family: acgyosyo, 英椎行書;
         }
         section {
             -ms-writing-mode: tb-rl;

@@ -18,6 +18,20 @@ use Illuminate\Http\Request;
 // });
 
 Route::post('login')->uses('Api\Auth\LoginController@login')->name('login');
+Route::post('logout')->uses('Api\Auth\LoginController@logout')->name('logout');
 Route::get('user', function() {
     return Auth::user();
 })->name('my');
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('wallpapers')->uses('Api\WallpaperController@index')->name('index');
+    Route::group(['prefix' => 'wallpaper', 'as' => 'wallpaper.'], function () {
+        Route::get('count')->uses('Api\WallpaperController@count')->name('count');
+    });
+    
+    Route::get('fonts')->uses('Api\FontController@index')->name('index');
+    Route::group(['prefix' => 'font', 'as' => 'font.'], function () {
+        Route::get('count')->uses('Api\FontController@count')->name('count');
+    });
+});

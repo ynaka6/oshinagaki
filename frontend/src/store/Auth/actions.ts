@@ -16,6 +16,10 @@ const actions: ActionTree<UserState, RootState> = {
       })
     ;
   },
+  logout: async ({ commit }) => {
+    return axios.post('/api/logout')
+      .then(() => commit('RESET_USER'));
+  },
   setUser: async ({ commit }, user: User) => {
     commit('SET_USER', user);
   },
