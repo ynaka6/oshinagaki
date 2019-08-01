@@ -14,3 +14,15 @@ export interface User {
     id: string;
     email: string;
 }
+
+export interface Wallpaper {
+    id: number;
+    name: string;
+    url: string;
+}
+
+export interface Font {
+    id: number;
+    name: string;
+    slug: string;
+};

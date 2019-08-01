@@ -26,14 +26,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import PageTitle from '@/components/Molecules/PageTitle.vue'
 import axios from 'axios';
-
-export type Font = {
-    id: number;
-    name: string;
-    slug: string;
-};
+import { Font } from '@/store/types';
+import PageTitle from '@/components/Molecules/PageTitle.vue'
 
 @Component({
   components: {

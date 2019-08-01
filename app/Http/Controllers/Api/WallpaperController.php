@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Wallpaper;
+use App\Http\Requests\Wallpaper\UpdateRequest;
 use Auth;
 
 class WallpaperController extends Controller
@@ -40,5 +41,11 @@ class WallpaperController extends Controller
             'type' => $ext
         ]);
         return $this->index($request);
+    }
+
+    public function update(UpdateRequest $request, Wallpaper $wallpaper)
+    {
+        $wallpaper->fill($request->validated())->save();
+        return response('', 200);
     }
 }

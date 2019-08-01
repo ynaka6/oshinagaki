@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'wallpaper', 'as' => 'wallpaper.'], function () {
         Route::get('count')->uses('Api\WallpaperController@count')->name('count');
         Route::post('upload')->uses('Api\WallpaperController@upload')->name('upload');
+        Route::post('{wallpaper}/update')->uses('Api\WallpaperController@update')->name('update');
     });
 
     Route::get('fonts')->uses('Api\FontController@index')->name('index');

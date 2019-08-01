@@ -2,21 +2,19 @@
   <img :src="src" :alt="name" />
 </template>
 
-<script>
-export default {
-  props: {
-    name: {
-      type: String,
-      validator: (val) => [
-        'page_not_found'
-      ].includes(val)
-    },
-    alt: String,
-  },
-  computed: {
-    src: function() {
-      return require(`@/assets/svg/${this.name}.svg`)
-    },
-  },
-}
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component
+export default class Icon extends Vue {
+  @Prop({ type: String, validator: (val) => ['page_not_found'].includes(val) })
+  name!: string;
+  @Prop({ type: String })
+  alt!: string;
+
+  public get src(): string {
+    return require(`@/assets/svg/${this.name}.svg`);
+  }
+};
 </script>
+

@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="flex justify-between items-center">
-      <div class="w-1/3"></div>
-      <page-title title="メニュー" subtitle="メニューを管理するページです" icon="event" class="flex-1" />
       <div class="w-1/3">
         <router-link
-          to="/menu/create"
-          class="bg-orange-500 px-5 py-2 rounded-full text-white"
+          to="/menus"
+          class="text-xs"
         >
-          追加
+          戻る
         </router-link>
       </div>
+      <page-title title="メニュー作成" subtitle="メニューを作成するページです" icon="event" />
+      <div class="w-1/3"></div>
     </div>
     <div class="lg:w-2/3 mx-auto my-5">
     </div>
@@ -27,7 +27,7 @@ import axios from 'axios';
     PageTitle
   },
 })
-export default class MenuIndexView extends Vue {
+export default class MenuCreateView extends Vue {
 
 }
 </script>

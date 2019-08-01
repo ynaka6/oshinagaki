@@ -39,8 +39,8 @@ const router =  new Router({
           meta: { requiresAuth: true },
         },
         {
-          path: 'menu/new',
-          component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+          path: 'menu/create',
+          component: () => import(/* webpackChunkName: "menu-create" */ './views/Menu/Create.vue'),
           meta: { requiresAuth: true },
         },
         {
