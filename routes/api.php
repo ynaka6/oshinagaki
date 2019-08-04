@@ -40,5 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('menus')->uses('Api\MenuController@index')->name('index');
     Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
         Route::get('count')->uses('Api\MenuController@count')->name('count');
+        Route::post('create')->uses('Api\MenuController@create')->name('create');
+        Route::post('{menu}/update')->uses('Api\MenuController@update')->name('update');
     });
 });

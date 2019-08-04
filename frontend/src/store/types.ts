@@ -26,3 +26,32 @@ export interface Font {
     name: string;
     slug: string;
 };
+
+
+export interface Menu {
+    id: number | null;
+    font_id: number | null;
+    wallpaper_id: number | null;
+    date: string;
+    signature_title: string;
+    signature_name: string;
+    sections: MenuSection[];
+};
+
+export interface MenuSection {
+    id: number | null;
+    menu_id: number | null;
+    title: string;
+    items: MenuSectionItem[];
+};
+
+export interface MenuSectionItem {
+    id: number | null;
+    menu_section_id: number | null;
+    title: string;
+};
+
+
+export interface ServerErrors {
+    [k: string]: String[] | ServerErrors[];
+};

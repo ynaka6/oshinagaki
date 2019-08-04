@@ -56,9 +56,9 @@ export default class WallpaperView extends Vue {
     const fileElement = (this.$refs.file as HTMLInputElement | null);
     if (fileElement) {
       const files = fileElement.files as FileList;
-      let formData = new FormData()
-      formData.append('file', files[0])
-      axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
+      let formData = new FormData();
+      formData.append('file', files[0]);
+      axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
       axios.post('/api/wallpaper/upload', formData)
         .then(response => {
           this.wallpapers = response.data;
