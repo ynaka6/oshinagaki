@@ -38,6 +38,7 @@ export default {
     },
   },
   data() {
+    console.log(this.value);
     return {
       selected: this.value,
     }

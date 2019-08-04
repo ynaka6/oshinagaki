@@ -3,12 +3,14 @@
     <div class="flex flex-wrap">
       <date-input
         v-model="menu.date"
+        :value="menu.date"
         label="日付"
         class="mt-3 px-2 w-full lg:w-1/2"
         :errors="errors.date"
       />
       <select-input
           v-model="menu.wallpaper_id"
+          :value="menu.wallpaper_id"
           class="mt-3 px-2 w-full lg:w-1/2"
           label="壁紙"
           :errors="errors.wallpaper_id"
@@ -24,6 +26,7 @@
       <select-input
         type="text"
         v-model="menu.font_id"
+        :value="menu.font_id"
         class="mt-3 px-2 w-full lg:w-1/2"
         label="フォント"
         :errors="errors.font_id"

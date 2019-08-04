@@ -29,10 +29,24 @@ class MenuController extends Controller
         return $this->menu->findPage($request->next);
     }
 
-
     public function create(CreateRequest $request)
     {
-        $this->menu->create([ 'user_id' => Auth::user()->id ] + $request->validated());
-        return response('', 200);
+        return DB::transaction(function () use($request) {
+            $this->menu->create([ 'user_id' => Auth::user()->id ] + $request->validated());
+            return response('', 200);
+        });
+    }
+
+    public function show(Menu $menu)
+    {
+        return $menu;
+    }
+
+    public function update(UpdateRequest $request, Menu $menu)
+    {
+        return DB::transaction(function () use($request, $menu) {
+            $menu->update($request->validated());
+            return response('', 200);
+        });
     }
 }

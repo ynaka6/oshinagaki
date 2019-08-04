@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\User;
 use App\Models\Menu\Section;
+use App\Models\Menu\Section\Item;
 use Carbon\Carbon;
 
 class Menu extends Model
@@ -17,6 +18,11 @@ class Menu extends Model
 
     protected $dates = [
         'date'
+    ];
+
+    protected $with = [
+        'sections',
+        'sections.items'
     ];
 
     public function user(): BelongsTo
@@ -68,19 +74,43 @@ class Menu extends Model
             isset($attribute['sections'])
             && is_array($attribute['sections'])
         ) {
-            foreach($attribute['sections'] as $section) {
-                $section = $this->sections()->create($section);
+            foreach($attribute['sections'] as $attributeSection) {
+                $section = $this->sections()->create($attributeSection);
                 if (
-                    isset($section['items'])
-                    && is_array($section['items'])
+                    isset($attributeSection['items'])
+                    && is_array($attributeSection['items'])
                 ) {
-                    foreach($section['items'] as $item) {
-                        $item = $section->items()->create($item);
+                    foreach($attributeSection['items'] as $attributeItem) {
+                        $item = $section->items()->create($attributeItem);
                     }
                 }
             }
         }
 
+        return $this;
+    }
+    public function update(array $attribute = [], array $options = []): Menu
+    {
+        Item::whereIn('menu_section_id', $this->sections()->pluck('id'))->delete();
+        $this->sections()->delete();
+
+        $this->fill($attribute)->save($options);
+        if (
+            isset($attribute['sections'])
+            && is_array($attribute['sections'])
+        ) {
+            foreach($attribute['sections'] as $attributeSection) {
+                $section = $this->sections()->create($attributeSection);
+                if (
+                    isset($attributeSection['items'])
+                    && is_array($attributeSection['items'])
+                ) {
+                    foreach($attributeSection['items'] as $attributeItem) {
+                        $item = $section->items()->create($attributeItem);
+                    }
+                }
+            }
+        }
         return $this;
     }
 }

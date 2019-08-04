@@ -84,7 +84,7 @@ class CreateRequest extends FormRequest
      * @throw HttpResponseException
      * @see FormRequest::failedValidation()
      */
-    protected function failedValidation( Validator $validator )
+    protected function failedValidation(Validator $validator)
     {
         $errors = [];
         foreach ($validator->errors()->toArray() as $key => $value) {

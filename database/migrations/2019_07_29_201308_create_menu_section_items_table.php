@@ -15,10 +15,10 @@ class CreateMenuSectionItemsTable extends Migration
     {
         Schema::create('menu_section_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('menu_sectin_id')->unsigned();
+            $table->bigInteger('menu_section_id')->unsigned();
             $table->string('title')->comment('タイトル');
             $table->timestamps();
-            $table->foreign('menu_sectin_id')->references('id')->on('menus')->onDelete('cascade');
+            $table->foreign('menu_section_id')->references('id')->on('menu_sections')->onDelete('cascade');
         });
     }
 

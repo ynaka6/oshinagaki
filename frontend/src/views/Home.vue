@@ -75,21 +75,19 @@ export default class HomeView extends Vue {
   private menuCount: number = 0;
 
   public created() {
-      axios.get('/api/wallpaper/count')
-        .then(response => {
-          this.wallpaperCount = response.data
-        })
-      ;
-      axios.get('/api/font/count')
-        .then(response => {
-          this.fontCount = response.data
-        })
-      ;
-      axios.get('/api/menu/count')
-        .then(response => {
-          this.menuCount = response.data
-        })
-      ;
+    Promise.all([
+      axios.get('/api/wallpaper/count'),
+      axios.get('/api/font/count'),
+      axios.get('/api/menu/count'),
+    ]).then(([
+      wallpaperCountResponse,
+      fontCountResponse,
+      menuCountResponse,
+    ]) => {
+      this.wallpaperCount = wallpaperCountResponse.data;
+      this.fontCount = fontCountResponse.data;
+      this.menuCount = menuCountResponse.data;
+    });
   }
 }
 </script>

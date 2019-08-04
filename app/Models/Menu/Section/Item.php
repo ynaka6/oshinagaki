@@ -21,7 +21,7 @@ class Item extends Model
 
     public function section(): BelongsTo
     {
-        return $this->belongsTo(Section::class, 'menu_sectin_id');
+        return $this->belongsTo(Section::class, 'menu_section_id');
     }
 
     public function getUrlAttribute(): string
