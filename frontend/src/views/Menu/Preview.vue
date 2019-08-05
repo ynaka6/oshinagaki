@@ -9,7 +9,7 @@
       <div
         v-for="n in 2"
         :key="n"
-        class="flex-1 mx-auto pt-10"
+        class="flex-1 mx-auto py-10"
       >
         <h1 class="ml-10" v-text="menu.title || 'お品書き'" />
 
