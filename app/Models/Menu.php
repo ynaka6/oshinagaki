@@ -12,6 +12,8 @@ use Carbon\Carbon;
 
 class Menu extends Model
 {
+    protected $perPage = 10;
+
     protected $fillable = [
         'user_id', 'font_id', 'wallpaper_id', 'date', 'signature_title', 'signature_name'
     ];
@@ -57,8 +59,7 @@ class Menu extends Model
         $next = null;
         if (count($menus) >= $this->perPage + 1) {
             $m = $menus->pop();
-            $next = $c->date->getTimestamp();
-            $next = $m->id;
+            $next = $m->date->getTimestamp();
         }
 
         $result = [ 'menus' => $menus ];

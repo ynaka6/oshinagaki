@@ -4,11 +4,12 @@
       <div class="w-1/3">
         <return-button to="/menus" />
       </div>
-      <page-title title="メニュー作成" subtitle="メニューを作成するページです" icon="event" />
+      <page-title title="メニューコピー" subtitle="メニューのコピーページです" icon="event" />
       <div class="w-1/3 text-right"></div>
     </div>
     <div class="lg:w-2/3 mx-auto my-5">
       <menu-form
+        v-show="menu"
         :menu="menu"
         :wallpapers="wallpapers"
         :fonts="fonts"
@@ -35,29 +36,8 @@ import dayjs from 'dayjs';
     MenuForm,
   },
 })
-export default class MenuCreateView extends Vue {
-  private menu: Menu = {
-    id: null,
-    font_id: null,
-    wallpaper_id: null,
-    date: dayjs().format('YYYY-MM-DD'),
-    signature_title: '',
-    signature_name: '',
-    sections: [
-      {
-        id: null,
-        menu_id: null,
-        title: '',
-        items: [
-          {
-            id: null,
-            menu_section_id: null,
-            title: '',
-          },
-        ],
-      },
-    ],
-  };
+export default class MenuEditView extends Vue {
+  private menu: Menu | null = null;
   private wallpapers: Wallpaper[] = [];
   private fonts: Font[] = [];
   private errors: ServerErrors = {};
@@ -66,12 +46,17 @@ export default class MenuCreateView extends Vue {
     Promise.all([
       axios.get('/api/wallpapers'),
       axios.get('/api/fonts'),
+      axios.get(`/api/menu/${this.$route.params.id}`)
     ]).then(([
       wallpapersResponse,
       fontsResponse,
+      menuResponse,
     ]) => {
       this.wallpapers = wallpapersResponse.data;
       this.fonts = fontsResponse.data;
+      const menu = menuResponse.data;
+      menu.date = dayjs(menu.date).format('YYYY-MM-DD');
+      this.menu = menu;
     });
   }
 

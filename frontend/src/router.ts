@@ -45,7 +45,12 @@ const router =  new Router({
         },
         {
           path: 'menu/:id/edit',
-          component: () => import(/* webpackChunkName: "home" */ './views/Menu/Edit.vue'),
+          component: () => import(/* webpackChunkName: "menu-edit" */ './views/Menu/Edit.vue'),
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'menu/:id/copy',
+          component: () => import(/* webpackChunkName: "menu-edit" */ './views/Menu/Copy.vue'),
           meta: { requiresAuth: true },
         },
       ],

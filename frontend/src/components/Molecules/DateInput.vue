@@ -32,7 +32,7 @@ export default class DateInput extends Vue {
   @Prop({ type: Array, default: [] })
   private errors!: Array<any>;
 
-  private date: string = this.value;
+  private date: string | null = this.value;
 
   @Emit('input')
   private onSelectedDate(date: Date)

@@ -49,4 +49,12 @@ class MenuController extends Controller
             return response('', 200);
         });
     }
+
+    public function destroy(Menu $menu)
+    {
+        return DB::transaction(function () use($menu) {
+            $menu->delete();
+            return response('', 200);
+        });
+    }
 }

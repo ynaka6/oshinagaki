@@ -6,9 +6,26 @@
         class="font-bold text-gray-800 font-acgyosyo text-3xl"
       />
       <div>
-        <router-link :to="`menu/${menu.id}/edit`">
-          <icon class="inline w-6 h-6 mr-1 fill-current" name="note-line" />
+        <router-link
+          :to="`menu/${menu.id}/edit`"
+          v-tooltip="'編集'"
+        >
+          <icon class="inline w-6 h-6 mr-2 fill-current hover:opacity-75" name="note-line" />
         </router-link>
+        <router-link
+          :to="`menu/${menu.id}/copy`"
+          v-tooltip="'コピー'"
+        >
+          <icon class="inline w-6 h-6 mr-2 fill-current hover:opacity-75" name="copy-line" />
+        </router-link>
+        <a
+          href="#"
+          v-tooltip="'削除'"
+          class="text-red-500"
+          @click.prevent="onClickDelete"
+        >
+          <icon class="inline w-6 h-6 fill-current hover:opacity-75" name="trash" />
+        </a>
       </div>
     </div>
   </div>
@@ -31,6 +48,11 @@ export default class MenuItem extends Vue {
 
   get formatDate () {
     return dayjs(this.menu.date).format('YYYY年MM月DD日');
+  }
+
+  @Emit('delete-menu')
+  private onClickDelete() {
+    return this.menu;
   }
 }
 </script>

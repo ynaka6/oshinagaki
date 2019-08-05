@@ -1,6 +1,12 @@
 <template>
   <div>
-    <page-title title="壁紙" subtitle="壁紙として利用する画像をアップロードし管理可能ができます" icon="image-gallery" />
+    <div class="flex justify-between items-center">
+      <div class="w-1/3">
+        <return-button to="/" />
+      </div>
+      <page-title title="壁紙" subtitle="壁紙として利用する画像をアップロードし管理可能ができます" icon="image-gallery" />
+      <div class="w-1/3 text-right"></div>
+    </div>
     <div class="lg:w-2/3 mx-auto my-5">
       <label class="w-full flex flex-col items-center px-4 py-6 bg-white text-gray-800 rounded-lg shadow-lg tracking-wide border cursor-pointer hover:bg-gray-100 hover:opacity-75">
           <icon class="w-8 h-8 text-gray-800 fill-current" name="upload" />
@@ -31,12 +37,14 @@ import { Component, Emit, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 import { Wallpaper } from '@/store/types';
 import Icon from '@/components/Atoms/Icon.vue';
+import ReturnButton from '@/components/Atoms/ReturnButton.vue'
 import PageTitle from '@/components/Molecules/PageTitle.vue';
 import WallpaperItem from '@/components/Organisms/WallpaperItem.vue';
 
 @Component({
   components: {
     Icon,
+    ReturnButton,
     PageTitle,
     WallpaperItem,
   },

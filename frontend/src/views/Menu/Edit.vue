@@ -2,12 +2,7 @@
   <div>
     <div class="flex justify-between items-center">
       <div class="w-1/3">
-        <router-link
-          to="/menus"
-          class="text-xs"
-        >
-          戻る
-        </router-link>
+        <return-button to="/menus" />
       </div>
       <page-title title="メニュー編集" subtitle="メニューの編集ページです" icon="event" />
       <div class="w-1/3 text-right"></div>
@@ -28,12 +23,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Menu, Wallpaper, Font, ServerErrors } from '@/store/types';
+import ReturnButton from '@/components/Atoms/ReturnButton.vue'
 import PageTitle from '@/components/Molecules/PageTitle.vue'
 import MenuForm from '@/components/Organisms/MenuForm/Index.vue'
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 @Component({
   components: {
+    ReturnButton,
     PageTitle,
     MenuForm,
   },
@@ -56,7 +54,9 @@ export default class MenuEditView extends Vue {
     ]) => {
       this.wallpapers = wallpapersResponse.data;
       this.fonts = fontsResponse.data;
-      this.menu = menuResponse.data;
+      const menu = menuResponse.data;
+      menu.date = dayjs(menu.date).format('YYYY-MM-DD');
+      this.menu = menu;
     });
   }
 

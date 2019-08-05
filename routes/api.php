@@ -43,5 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('create')->uses('Api\MenuController@create')->name('create');
         Route::get('{menu}')->uses('Api\MenuController@show')->name('show');
         Route::post('{menu}/update')->uses('Api\MenuController@update')->name('update');
+        Route::delete('{menu}/destroy')->uses('Api\MenuController@destroy')->name('destroy');
     });
 });
