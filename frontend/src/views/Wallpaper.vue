@@ -37,7 +37,7 @@ import { Component, Emit, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 import { Wallpaper } from '@/store/types';
 import Icon from '@/components/Atoms/Icon.vue';
-import ReturnButton from '@/components/Atoms/ReturnButton.vue'
+import ReturnButton from '@/components/Atoms/ReturnButton.vue';
 import PageTitle from '@/components/Molecules/PageTitle.vue';
 import WallpaperItem from '@/components/Organisms/WallpaperItem.vue';
 
@@ -64,7 +64,7 @@ export default class WallpaperView extends Vue {
     const fileElement = (this.$refs.file as HTMLInputElement | null);
     if (fileElement) {
       const files = fileElement.files as FileList;
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('file', files[0]);
       axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
       axios.post('/api/wallpaper/upload', formData)

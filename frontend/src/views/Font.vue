@@ -34,8 +34,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 import { Font } from '@/store/types';
-import ReturnButton from '@/components/Atoms/ReturnButton.vue'
-import PageTitle from '@/components/Molecules/PageTitle.vue'
+import ReturnButton from '@/components/Atoms/ReturnButton.vue';
+import PageTitle from '@/components/Molecules/PageTitle.vue';
 
 @Component({
   components: {

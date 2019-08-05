@@ -23,9 +23,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Menu, Wallpaper, Font, ServerErrors } from '@/store/types';
-import ReturnButton from '@/components/Atoms/ReturnButton.vue'
-import PageTitle from '@/components/Molecules/PageTitle.vue'
-import MenuForm from '@/components/Organisms/MenuForm/Index.vue'
+import ReturnButton from '@/components/Atoms/ReturnButton.vue';
+import PageTitle from '@/components/Molecules/PageTitle.vue';
+import MenuForm from '@/components/Organisms/MenuForm/Index.vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 

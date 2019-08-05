@@ -123,11 +123,11 @@ export default class HomeView extends Vue {
     });
   }
 
-  deleteMenu(menu: Menu) {
+  private deleteMenu(menu: Menu) {
     this.$dialog
       .confirm('メニュー削除してもいいですか？', {
-        okText: "削除",
-        cancelText: "閉じる",
+        okText: '削除',
+        cancelText: '閉じる',
       })
       .then((dialog: any) => {
         axios.delete(`/api/menu/${menu.id}/destroy`)

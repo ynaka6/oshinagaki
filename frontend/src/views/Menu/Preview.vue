@@ -27,9 +27,7 @@
             </div>
         </div>
         <div class="mr-20">
-            <p class="mt-20 flex-auto">
-                令和元年八月一日
-            </p>
+            <p class="mt-20 flex-auto" v-text="menu.date" />
         </div>
         <div class="mr-12">
             <p class="mt-24 flex-auto" v-text="menu.signature_title" />
@@ -54,12 +52,14 @@ export default class MenuPreviewView extends Vue {
 
   public created() {
     Promise.all([
-      axios.get(`/api/menu/${this.$route.params.id}`)
+      axios.get(`/api/menu/${this.$route.params.id}`),
     ]).then(([
       menuResponse,
     ]) => {
       const menu = menuResponse.data;
       menu.date = dayjs(menu.date).format('YYYY-MM-DD');
+      const date = new Date(menu.date);
+      menu.date = new Intl.DateTimeFormat('ja-JP-u-nu-hanidec', { era: 'long' }).format(date);
       this.menu = menu;
     });
   }

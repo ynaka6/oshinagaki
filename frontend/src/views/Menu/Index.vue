@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import ReturnButton from '@/components/Atoms/ReturnButton.vue'
+import ReturnButton from '@/components/Atoms/ReturnButton.vue';
 import PageTitle from '@/components/Molecules/PageTitle.vue'
 import MenuItem from '@/components/Organisms/MenuItem.vue';
 import { Menu } from '@/store/types';
@@ -77,11 +77,11 @@ export default class MenuIndexView extends Vue {
     ;
   }
 
-  deleteMenu(menu: Menu) {
+  private deleteMenu(menu: Menu) {
     this.$dialog
       .confirm('メニュー削除してもいいですか？', {
-        okText: "削除",
-        cancelText: "閉じる",
+        okText: '削除',
+        cancelText: '閉じる',
       })
       .then((dialog: any) => {
         axios.delete(`/api/menu/${menu.id}/destroy`)
