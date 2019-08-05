@@ -39,6 +39,11 @@ class CreateRequest extends FormRequest
                 'date',
                 'date_format:Y-m-d',
             ],
+            'title' => [
+                'nullable',
+                'string',
+                'max:20',
+            ],
             'signature_title' => [
                 'required',
                 'string',

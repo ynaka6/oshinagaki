@@ -33,6 +33,7 @@ export interface Menu {
     font_id: number | null;
     wallpaper_id: number | null;
     date: string;
+    title: string;
     signature_title: string;
     signature_name: string;
     sections: MenuSection[];

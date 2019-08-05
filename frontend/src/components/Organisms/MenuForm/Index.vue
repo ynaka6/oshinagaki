@@ -8,6 +8,13 @@
         class="mt-3 px-2 w-full lg:w-1/2"
         :errors="errors.date"
       />
+      <text-input
+        type="text"
+        v-model="menu.title"
+        label="タイトル"
+        class="mt-3 px-2 w-full lg:w-1/2"
+        :errors="errors.title"
+      />
       <select-input
           v-model="menu.wallpaper_id"
           :value="menu.wallpaper_id"

@@ -41,6 +41,7 @@ export default class MenuCreateView extends Vue {
     font_id: null,
     wallpaper_id: null,
     date: dayjs().format('YYYY-MM-DD'),
+    title: '',
     signature_title: '',
     signature_name: '',
     sections: [

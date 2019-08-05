@@ -15,7 +15,7 @@ class Menu extends Model
     protected $perPage = 10;
 
     protected $fillable = [
-        'user_id', 'font_id', 'wallpaper_id', 'date', 'signature_title', 'signature_name'
+        'user_id', 'font_id', 'wallpaper_id', 'date', 'title', 'signature_title', 'signature_name'
     ];
 
     protected $dates = [

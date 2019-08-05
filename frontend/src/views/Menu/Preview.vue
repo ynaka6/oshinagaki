@@ -2,7 +2,7 @@
   <section
     v-show="menu"
     class="sheet"
-    :class="`font-${menu.font.slug}`"
+    :class="`font-${menu.font ? menu.font.slug : ''}`"
     :style="{ backgroundImage: `url(${menu.wallpaper ? menu.wallpaper.url : ''})` }"
   >
     <div class="flex w-full">
@@ -11,14 +11,14 @@
         :key="n"
         class="flex-1 mx-auto pt-5 pb-3"
       >
-        <h1 class="ml-10">お品書き</h1>
+        <h1 class="ml-10" v-text="menu.title || 'お品書き'" />
 
         <div
           v-for="section in menu.sections"
           :key="section.id"
           class="flex mx-5"
         >
-            <h2 class="whitespace-no-wrap h-20" v-text="section.title" />
+            <h2 class="whitespace-no-wrap h-24" v-text="section.title" />
             <div class="flex-auto">
                 <p
                   v-for="item in section.items" :key="item.id"
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mr-20">
-            <p class="mt-20 flex-auto" v-text="menu.date" />
+            <p class="mt-24 flex-auto" v-text="menu.date" />
         </div>
         <div class="mr-12">
             <p class="mt-24 flex-auto" v-text="menu.signature_title" />
@@ -44,6 +44,7 @@ import { Menu, Wallpaper, Font } from '@/store/types';
 import 'paper-css/paper.css';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { convertCaJapanese } from '@/utils/date-utils';
 
 @Component({
 })
@@ -59,7 +60,7 @@ export default class MenuPreviewView extends Vue {
       const menu = menuResponse.data;
       menu.date = dayjs(menu.date).format('YYYY-MM-DD');
       const date = new Date(menu.date);
-      menu.date = new Intl.DateTimeFormat('ja-JP-u-nu-hanidec', { era: 'long' }).format(date);
+      menu.date = convertCaJapanese(date);
       this.menu = menu;
     });
   }
