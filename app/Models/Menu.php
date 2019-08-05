@@ -23,6 +23,8 @@ class Menu extends Model
     ];
 
     protected $with = [
+        'font',
+        'wallpaper',
         'sections',
         'sections.items'
     ];

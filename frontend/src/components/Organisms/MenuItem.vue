@@ -24,7 +24,14 @@
           class="text-red-500"
           @click.prevent="onClickDelete"
         >
-          <icon class="inline w-6 h-6 fill-current hover:opacity-75" name="trash" />
+          <icon class="inline w-6 h-6 mr-2 fill-current hover:opacity-75" name="trash" />
+        </a>
+        <a
+          :href="`menu/${menu.id}/preview`"
+          v-tooltip="'プレビュー'"
+          target="_blank"
+        >
+          <icon class="inline w-6 h-6 fill-current hover:opacity-75" name="printer" />
         </a>
       </div>
     </div>

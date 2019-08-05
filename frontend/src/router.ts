@@ -13,6 +13,7 @@ const router =  new Router({
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
+      meta: { requiresGuest: true },
     },
     {
       path: '/',
@@ -29,7 +30,7 @@ const router =  new Router({
           meta: { requiresAuth: true },
         },
         {
-          path: 'fonts',
+          path: 'font',
           component: () => import(/* webpackChunkName: "font" */ './views/Font.vue'),
           meta: { requiresAuth: true },
         },
@@ -56,6 +57,11 @@ const router =  new Router({
       ],
     },
     {
+      path: '/menu/:id/preview',
+      component: () => import(/* webpackChunkName: "menu-preview" */ './views/Menu/Preview.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '*',
       name: 'notfound',
       component: () => import(/* webpackChunkName: "notfound" */ './views/NotFound.vue'),
@@ -68,6 +74,14 @@ router.beforeEach((to, from, next) => {
     if (!store.getters['auth/loggedIn']) {
       next({
         path: '/login',
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresGuest)) {
+    if (store.getters['auth/loggedIn']) {
+      next({
+        path: '/',
       })
     } else {
       next()

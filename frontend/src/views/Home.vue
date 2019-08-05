@@ -20,7 +20,7 @@
         </div>
       </router-link>
       <router-link
-        to="/fonts"
+        to="/font"
         class="block w-full md:w-1/2 xl:w-1/3 pb-3 md:p-3"
       >
         <div class="bg-white border rounded shadow p-2 hover:bg-gray-100 hover:shadow-lg">
